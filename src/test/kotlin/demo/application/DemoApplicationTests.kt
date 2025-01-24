@@ -17,7 +17,7 @@ class DemoApplicationTests {
     private lateinit var appClient: AppClient
 
     @Test
-    fun makeuser() {
+    fun makeUser() {
         val request = User(login = "helloworld", password = "echkere")
         val response = appClient.makeUser(request)
         Assertions.assertEquals(HttpStatusCode.valueOf(200), response.statusCode)
@@ -29,7 +29,7 @@ class DemoApplicationTests {
         val regResponse = appClient.makeUser(regRequest)
         Assertions.assertEquals(HttpStatusCode.valueOf(200), regResponse.statusCode)
 
-        val formRequest = About(token = regResponse.body!!.token, id = regResponse.body!!.id, gender = true, age = 16, firstname = "Maria", lastname = "Ivanova")
+        val formRequest = About(token = regResponse.body!!.token, id = regResponse.body!!.id, gender = true, age = 16, firstname = "Maria", lastname = "Ivanova", photo = "url")
         val formResponse = appClient.fillForm(formRequest, regResponse.body!!.token)
         Assertions.assertEquals(HttpStatusCode.valueOf(200), formResponse.statusCode)
     }

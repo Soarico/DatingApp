@@ -6,5 +6,6 @@ data class About (
     val firstname : String,
     val lastname : String,
     val age : Int,
-    val gender : Boolean
+    val gender : Boolean,
+    val photo : String
 )
