@@ -8,5 +8,6 @@ data class User(
     var age : Int? = null,
     var gender : Boolean? = null,
     var firstname : String? = null,
-    var lastname : String? = null                        ,
+    var lastname : String? = null,
+    var photo : String? = null
 )

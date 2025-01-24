@@ -1,5 +1,6 @@
 package demo.application.service
 
+import demo.application.repository.ReactRepository
 import org.example.demo.application.dto.About
 import org.example.demo.application.dto.User
 import org.example.demo.application.dto.UserCreateResponse
@@ -9,14 +10,16 @@ import org.springframework.stereotype.Service
 
 @Service
 class UserService(
-    val userRepository : UserRepository
+    val userRepository : UserRepository,
+    val reactRepository : ReactRepository
 ) {
-    fun addUser(user: User) : UserCreateResponse {
+    fun addUser(user: User): UserCreateResponse {
         userRepository.users.add(user)
         return UserCreateResponse(generateRandomString(10), user.login, user.id)
     }
-    fun addForm(about : About) : UserFormResponse {
-        var id : Long? = -1
+
+    fun addForm(about: About): UserFormResponse {
+        var id: Long? = -1
         userRepository.users.forEach { user ->
             if (user.token == about.token) {
                 user.age = about.age
@@ -28,10 +31,17 @@ class UserService(
         }
         return UserFormResponse(id)
     }
-    private fun generateRandomString(len: Int = 15): String{
+
+    fun getUsers() = userRepository.getUsersProfile()
+
+    fun makeReaction(userTo: Int, userFrom: Int, reaction : Boolean) {
+        reactRepository.react(reaction, userTo, userFrom)
+    }
+
+    private fun generateRandomString(len: Int = 15): String {
         val alphanumerics = CharArray(26) { it -> (it + 97).toChar() }.toSet()
             .union(CharArray(9) { it -> (it + 48).toChar() }.toSet())
-        return (0..len-1).map {
+        return (0..len - 1).map {
             alphanumerics.toList().random()
         }.joinToString("")
     }
