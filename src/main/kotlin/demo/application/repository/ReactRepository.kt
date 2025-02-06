@@ -1,7 +1,9 @@
 package demo.application.repository
 
 import demo.application.dto.Reaction
+import org.springframework.stereotype.Repository
 
+@Repository
 class ReactRepository (
     val reactions: MutableList<Reaction>
 ) {
