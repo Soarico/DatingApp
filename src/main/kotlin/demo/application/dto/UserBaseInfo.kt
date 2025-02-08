@@ -1,10 +1,13 @@
 package org.example.demo.application.dto
 
-data class About (
+import demo.application.dto.Gender
+
+data class UserBaseInfo (
     val token : String,
     val id : Long?,
     val firstname : String,
     val lastname : String,
     val age : Int,
-    val gender : Boolean
+    val gender : Gender,
+    val photo : String
 )

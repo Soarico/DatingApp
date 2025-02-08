@@ -6,7 +6,7 @@ plugins {
 
 }
 
-group = "57project"
+group = "DatingApp"
 version = "1.0-SNAPSHOT"
 
 repositories {
